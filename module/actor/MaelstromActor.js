@@ -5,20 +5,18 @@ import { getRollModifiers } from "../dialog/ModifiersDialog.js";
 export class MaelstromActor extends Actor {
     prepareDerivedData() {
         super.prepareDerivedData();
-        const actorData = this.data;
-        if (actorData.type == 'character')
-            this._prepareCharacterData(actorData);
+        if (this.type == 'character')
+            this._prepareCharacterData(this);
     }
     /**
      * Calculate derived values
      *
      * @param actorData
      */
-    _prepareCharacterData(actorData) {
-        var _a;
-        const data = actorData.data;
+    _prepareCharacterData(actor) {
+        const actorSystem = actor.system;
         // calculate actual value of an attribute between temp or orig
-        for (let [key, attribute] of Object.entries(data.attributes)) {
+        for (let [key, attribute] of Object.entries(actorSystem.attributes)) {
             const att = attribute;
             if (Number.isFinite(att.temp))
                 att.current = att.temp;
@@ -27,36 +25,35 @@ export class MaelstromActor extends Actor {
             else
                 att.current = 0;
         }
-        if (!Number.isFinite((_a = data === null || data === void 0 ? void 0 : data.initiative) === null || _a === void 0 ? void 0 : _a.modifier)) {
-            if (!data.initiative) {
-                data.initiative = {
+        if (!Number.isFinite(actorSystem?.initiative?.modifier)) {
+            if (!actorSystem.initiative) {
+                actorSystem.initiative = {
                     modifier: 0
                 };
             }
             else
-                data.initiative.modifier = 0;
+                actorSystem.initiative.modifier = 0;
         }
-        if (!(data === null || data === void 0 ? void 0 : data.hp)) {
-            data.hp = {
+        if (!actorSystem?.hp) {
+            actorSystem.hp = {
                 value: 0,
                 max: 0,
                 wounds: 0
             };
         }
-        data.hp.wounds = this._getTotalWounds(data);
-        data.hp.max = data.attributes.endurance.current + 20;
-        data.hp.value = data.hp.max - data.hp.wounds;
-        if (!(data === null || data === void 0 ? void 0 : data.roll)) {
-            data.roll = {
+        actorSystem.hp.wounds = this._getTotalWounds(actorSystem);
+        actorSystem.hp.max = actorSystem.attributes.endurance.current + 20;
+        actorSystem.hp.value = actorSystem.hp.max - actorSystem.hp.wounds;
+        if (!actorSystem?.roll) {
+            actorSystem.roll = {
                 modifier: 0
             };
         }
-        data.roll.modifier = 0;
+        actorSystem.roll.modifier = 0;
     }
     _getTotalWounds(data) {
-        var _a;
         let total = 0;
-        if ((_a = data === null || data === void 0 ? void 0 : data.wounds) === null || _a === void 0 ? void 0 : _a.wounds) {
+        if (data?.wounds?.wounds) {
             // array is passed in as an Object ){0: 1, 1: 1, 2: 1, 3: null}
             const w = Object.values(data.wounds.wounds);
             total += w.reduce((previousValue, currentValue) => {
@@ -69,15 +66,11 @@ export class MaelstromActor extends Actor {
         return total;
     }
     _getAttributeValue(attributeName) {
-        var _a, _b;
-        // @ts-ignore
-        const attribute = (_b = (_a = this.data) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.attributes[attributeName];
+        const attribute = this.system.attributes[attributeName];
         return attribute.current;
     }
     _getArmourPenaltyValue() {
-        var _a, _b, _c;
-        // @ts-ignore
-        const penalty = (_c = (_b = (_a = this.data) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.armour) === null || _c === void 0 ? void 0 : _c.penalty;
+        const penalty = this.system.armour?.penalty;
         if (Number.isFinite(penalty))
             return penalty;
         return 0;
@@ -151,14 +144,12 @@ export class MaelstromActor extends Actor {
                 speaker: ChatMessage.getSpeaker({ actor: actor }),
                 flavor: flavorText
             }, 
-            // @ts-ignore
             CONFIG.Dice.rollModes.publicroll).then((value => { }));
             return false;
         });
         return false;
     }
     rollItemDamage(name, damage = '') {
-        var _a;
         name = name ? name.trim() : '';
         damage = damage ? damage.trim() : '';
         const nameLocalized = game.i18n.format("MAELSTROM.roll.item.with.damage", {
@@ -172,7 +163,6 @@ export class MaelstromActor extends Actor {
                 speaker: ChatMessage.getSpeaker({ actor: this }),
                 flavor: flavorText
             }, 
-            // @ts-ignore
             c).then((value => { }));
         }
         catch (e) {
@@ -181,7 +171,7 @@ export class MaelstromActor extends Actor {
             });
             flavorText += `<span style="color: red">${Handlebars.Utils.escapeExpression(errorMsg)}</span>`;
             ChatMessage.create({
-                user: (_a = game === null || game === void 0 ? void 0 : game.user) === null || _a === void 0 ? void 0 : _a.id,
+                user: game.users.id,
                 speaker: ChatMessage.getSpeaker({ actor: this }),
                 content: flavorText
             }).then((value => { }));
@@ -189,10 +179,9 @@ export class MaelstromActor extends Actor {
         return false;
     }
     rollActorInitiative() {
-        var _a;
         let roll;
         try {
-            roll = new Roll(INITIATIVE_FORMULA, (_a = this.data) === null || _a === void 0 ? void 0 : _a.data).roll({ async: false });
+            roll = new Roll(INITIATIVE_FORMULA, this.system).roll({ async: false });
             roll.toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this }),
                 flavor: Handlebars.Utils.escapeExpression(game.i18n.localize("MAELSTROM.initiative.roll.message.flavour"))

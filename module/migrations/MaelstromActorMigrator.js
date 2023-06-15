@@ -6,7 +6,7 @@ MaelstromActorV0ToV1Migrator.forVersion = 1;
 MaelstromActorV0ToV1Migrator.forType = MaelstromActor;
 MaelstromActorV0ToV1Migrator.migrationFunction = async function (actor, obj = {}) {
     const newData = Object.assign({ _id: actor._id }, obj);
-    if (!actor.data.data.hasOwnProperty("wounds")) {
+    if (!actor.system.hasOwnProperty("wounds")) {
         newData["data.wounds"] = {
             "wounds": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "bloodloss": 0,
@@ -15,22 +15,22 @@ MaelstromActorV0ToV1Migrator.migrationFunction = async function (actor, obj = {}
             "longterm": ""
         };
     }
-    if (!actor.data.data.wounds.hasOwnProperty("wounds")) {
+    if (!actor.system.wounds.hasOwnProperty("wounds")) {
         newData["data.wounds.wounds"] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     }
-    if (!actor.data.data.wounds.hasOwnProperty("bloodloss")) {
+    if (!actor.system.wounds.hasOwnProperty("bloodloss")) {
         newData["data.wounds.bloodloss"] = 0;
     }
-    if (!actor.data.data.wounds.hasOwnProperty("injuries")) {
+    if (!actor.system.wounds.hasOwnProperty("injuries")) {
         newData["data.wounds.injuries"] = "";
     }
-    if (!actor.data.data.wounds.hasOwnProperty("bleeding")) {
+    if (!actor.system.wounds.hasOwnProperty("bleeding")) {
         newData["data.wounds.bleeding"] = "";
     }
-    if (!actor.data.data.wounds.hasOwnProperty("longterm")) {
+    if (!actor.system.wounds.hasOwnProperty("longterm")) {
         newData["data.wounds.longterm"] = "";
     }
-    if (!actor.data.data.hasOwnProperty("armour")) {
+    if (!actor.system.hasOwnProperty("armour")) {
         newData["data.armour"] = {
             "armour": "",
             "ar": "",

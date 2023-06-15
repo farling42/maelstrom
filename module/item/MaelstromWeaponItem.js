@@ -3,15 +3,14 @@ export class MaelstromWeaponItem extends Item {
         return "weapon";
     }
     prepareData() {
-        // @ts-ignore
-        if (!this.data.img || this.data.img === this.data.constructor.DEFAULT_ICON)
+        if (!this.img || this.img === this.constructor.DEFAULT_ICON)
             // Override common default icon
-            this.data.img = 'icons/svg/combat.svg';
+            this.img = 'icons/svg/combat.svg';
         super.prepareData();
-        let itemData = this.data;
+        let itemData = this.system;
         if (itemData.hasOwnProperty("data"))
             itemData = itemData.data;
-        itemData.name = this.data.name || game.i18n.localize("MAELSTROM.item.weapon.newWeapon");
+        itemData.name = this.name || game.i18n.localize("MAELSTROM.item.weapon.newWeapon");
         itemData.notes = itemData.notes || "";
         itemData.as = itemData.as || "";
         itemData.ds = itemData.ds || "";

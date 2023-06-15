@@ -29,7 +29,6 @@ export const INITIATIVE_FORMULA = "2d10 + @attributes.speed.current + @initiativ
 Hooks.once('init', async function () {
     console.log('Maelstrom | Initializing Maelstrom system');
     // Assign custom classes and constants here
-    // @ts-ignore
     game.maelstrom = {
         MaelstromActor,
         MaelstromActorSheet,
@@ -38,7 +37,6 @@ Hooks.once('init', async function () {
         MaelstromWeaponItem,
         MaelstromWeaponItemSheet
     };
-    // @ts-ignore
     game.MAELSTROM = MAELSTROM;
     /**
      * Set an initiative formula for the system
@@ -50,7 +48,6 @@ Hooks.once('init', async function () {
     };
     // define custom entity classes
     CONFIG.Actor.documentClass = MaelstromActor;
-    // @ts-ignore
     CONFIG.Item.documentClass = MaelstromItem;
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet(systemName, MaelstromActorSheet, { makeDefault: true });

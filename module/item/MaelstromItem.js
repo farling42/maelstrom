@@ -14,11 +14,8 @@
  */
 import { MaelstromAbilityItem } from "./MaelstromAbilityItem.js";
 import { MaelstromWeaponItem } from "./MaelstromWeaponItem.js";
-// @ts-ignore
-// @ts-ignore
 export const MaelstromItem = new Proxy(function () { }, {
     //Calling a constructor from this proxy object
-    // @ts-ignore
     construct: function (target, info, ...args) {
         const [data, newTarget] = info;
         console.log('construct item type = ' + data.type);
@@ -43,7 +40,6 @@ export const MaelstromItem = new Proxy(function () { }, {
                     console.log('new item type = ' + data.type);
                     if (data.constructor === Array) {
                         //Array of data, this happens when creating Actors imported from a compendium
-                        // @ts-ignore
                         return data.map(i => MaelstromItem.create(i, options));
                     }
                     switch (data.type) {

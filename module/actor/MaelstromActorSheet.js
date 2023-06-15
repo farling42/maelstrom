@@ -21,14 +21,13 @@ function onItemCreate(itemType, itemClass, callback = null) {
         };
         const newItem = await this.actor.createEmbeddedDocuments("Item", [itemData]);
         if (!!callback) {
-            // @ts-ignore
             callback(newItem);
         }
         return newItem;
     };
 }
 //Sort functions
-const sortByOrderFunction = (a, b) => a.data.data.order < b.data.data.order ? -1 : a.data.data.order > b.data.data.order ? 1 : 0;
+const sortByOrderFunction = (a, b) => a.system.order < b.system.order ? -1 : a.system.order > b.system.order ? 1 : 0;
 const sortByNameFunction = (a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
 // Stolen from https://stackoverflow.com/a/34064434/20043
 function htmlDecode(input) {
@@ -74,29 +73,24 @@ export class MaelstromActorSheet extends ActorSheet {
     }
     /* -------------------------------------------- */
     /** @override */
-    getData() {
+    async getData() {
         //getData behaves MUCH differently in 0.8!
         //see https://gitlab.com/foundrynet/foundryvtt/-/issues/4321
         const sheetData = super.getData();
         //see https://discord.com/channels/170995199584108546/670336275496042502/836066464388743188
-        // @ts-ignore
-        sheetData.data = sheetData.data.data;
-        // @ts-ignore
+        sheetData.data = sheetData.data.system;
         sheetData.dtypes = ["String", "Number", "Boolean"];
-        // @ts-ignore
         for (let attr of Object.values(sheetData.data.attributes)) {
-            // @ts-ignore
             attr.isCheckbox = attr.dtype === "Boolean";
         }
         // Which game flavour are we playing?
         const maelstromFlavour = game.settings.get(systemName, "characterSheet");
-        // @ts-ignore
         sheetData.maelstromFlavour = maelstromFlavour;
         // Prepare items.
-        if (this.actor.data.type == 'character') {
-            // @ts-ignore
+        if (this.actor.type == 'character') {
             this._prepareCharacterItems(sheetData);
         }
+        sheetData.enriched_biography = await TextEditor.enrichHTML(sheetData.data.biography, {async:true});
         return sheetData;
     }
     /**
@@ -106,7 +100,6 @@ export class MaelstromActorSheet extends ActorSheet {
      * @return {undefined}
      */
     _prepareCharacterItems(sheetData) {
-        // @ts-ignore
         sheetData.data.items = sheetData.actor.items || {};
         // filter out abilities and sort them
         Object.entries({
@@ -133,18 +126,14 @@ export class MaelstromActorSheet extends ActorSheet {
             sheetData.data[val].sort(sortByOrderFunction); // sorts in place
         });
         // build a list of updates to weapon ordering
-        // @ts-ignore
         this._reorderItems(sheetData.data.weapons);
         // remove HTML from notes fields
-        // @ts-ignore
         // sheetData.data.items.abilities = sheetData.data.items.abilities.map(ability => {
         //     ability.data.notes = removeHtmlTags(ability.data.notes);
         //     return ability;
         // });
         sheetData.data.hp.wounds = this.actor._getTotalWounds(sheetData.data);
-        // @ts-ignore
         sheetData.data.hp.max = sheetData.data.attributes.endurance.current + 20;
-        // @ts-ignore
         sheetData.data.hp.value = sheetData.data.hp.max - sheetData.data.hp.wounds;
     }
     async _reorderItems(items) {
@@ -177,7 +166,6 @@ export class MaelstromActorSheet extends ActorSheet {
             const td = $(ev.currentTarget).parents(".item");
             const item = this.actor.getEmbeddedDocument("Item", td.data("itemId"));
             // todo: does this work, is sheet on item in v0.8
-            // @ts-ignore
             item.sheet.render(true);
         });
         // Delete Inventory Item
@@ -219,7 +207,6 @@ export class MaelstromActorSheet extends ActorSheet {
     }
     _onRollInitiative(event) {
         event.preventDefault();
-        // @ts-ignore
         return this.actor.rollActorInitiative();
     }
     /**
@@ -231,7 +218,6 @@ export class MaelstromActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
         const attribute = element.dataset.attribute;
-        // @ts-ignore
         return this.actor.rollAttribute(attribute);
     }
     /**
@@ -250,7 +236,6 @@ export class MaelstromActorSheet extends ActorSheet {
             if (isNaN(modifier))
                 modifier = '';
         }
-        // @ts-ignore
         return this.actor.rollAttribute(attribute, [modifier], name);
     }
     /**
@@ -263,7 +248,6 @@ export class MaelstromActorSheet extends ActorSheet {
         const element = event.currentTarget;
         const name = element.dataset.name;
         const damage = element.dataset.damage;
-        // @ts-ignore
         return this.actor.rollItemDamage(name, damage);
     }
     /**
@@ -273,13 +257,10 @@ export class MaelstromActorSheet extends ActorSheet {
      * @param event
      */
     _onSufferBleedingDamage(event) {
-        var _a, _b, _c, _d;
         event.preventDefault();
-        // @ts-ignore
-        const wounds = (_b = (_a = this.actor.data.data) === null || _a === void 0 ? void 0 : _a.wounds) === null || _b === void 0 ? void 0 : _b.wounds;
+        const wounds = this.actor.system.wounds?.wounds;
         if (wounds) {
-            // @ts-ignore
-            const bleedingWounds = (_d = (_c = this.actor.data.data) === null || _c === void 0 ? void 0 : _c.wounds) === null || _d === void 0 ? void 0 : _d.bloodloss;
+            const bleedingWounds = this.actor.system?.wounds?.bloodloss;
             if (Number.isFinite(bleedingWounds) && bleedingWounds > 0) {
                 const woundsArray = Object.values(wounds); // convert object to an array of values
                 if (woundsArray.length < 1)
@@ -287,8 +268,7 @@ export class MaelstromActorSheet extends ActorSheet {
                 let bloodlossDamage = woundsArray[woundsArray.length - 1]; // get the last entry in the wounds array which is bloodloss damage
                 bloodlossDamage = (Number.isFinite(bloodlossDamage)) ? bloodlossDamage + bleedingWounds : bleedingWounds;
                 woundsArray[woundsArray.length - 1] = bloodlossDamage;
-                // @ts-ignore
-                this.actor.data.data.wounds.wounds = Object.assign({}, woundsArray);
+                this.actor.system.wounds.wounds = Object.assign({}, woundsArray);
                 this.render(false);
             }
         }
@@ -299,10 +279,8 @@ export class MaelstromActorSheet extends ActorSheet {
      * @param event
      */
     _onItemHealByOne(event) {
-        var _a, _b;
         event.preventDefault();
-        // @ts-ignore
-        const wounds = (_b = (_a = this.actor.data.data) === null || _a === void 0 ? void 0 : _a.wounds) === null || _b === void 0 ? void 0 : _b.wounds;
+        const wounds = this.actor.system?.wounds?.wounds
         if (wounds) {
             const woundsArray = Object.values(wounds); // convert object to an array of values
             const healed = woundsArray.map(value => {
@@ -311,8 +289,7 @@ export class MaelstromActorSheet extends ActorSheet {
                 }
                 return 0;
             });
-            // @ts-ignore
-            this.actor.data.data.wounds.wounds = Object.assign({}, healed);
+            this.actor.system.wounds.wounds = Object.assign({}, healed);
             this.render(false);
         }
     }
@@ -351,7 +328,7 @@ export class MaelstromActorSheet extends ActorSheet {
         const element = event.currentTarget;
         const dataset = element.dataset;
         if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.data.data);
+            let roll = new Roll(dataset.roll, this.actor.system);
             let label = dataset.label ? `Rolling ${dataset.label}` : '';
             roll.roll().toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
