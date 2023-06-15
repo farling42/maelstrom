@@ -1,17 +1,11 @@
 {
-	"name": "maelstrom",
+	"id": "maelstrom",
 	"title": "Maelstrom",
 	"description": "Fan contributed support for Maelstrom Domesday / Gothic / Rome",
-	"version": "0.3.3",
-	"templateVersion": 2,
-	"author": "Stephen Smith",
-	"scripts": [
-		"lib/tooltipster/tooltipster.bundle.min.js"
-	],
+	"version": "0.4.0",
 	"esmodules": ["maelstrom.js"],
 	"styles": [
-		"maelstrom.css",
-		"lib/tooltipster/tooltipster.bundle.min.css"
+		"maelstrom.css"
 	],
 	"packs": [],
 	"languages": [
@@ -24,8 +18,11 @@
 	"socket": false,
 	"gridDistance": 10,
 	"gridUnits": "ft",
-	"minimumCoreVersion": "9",
-	"compatibleCoreVersion": "9",
+	"minimumCoreVersion": "10",
+	"compatibility": {
+		"minimum": "10",
+		"verified": "10.291"
+	  },
 	"manifest": "https://raw.githubusercontent.com/snorith/maelstrom/master/src/system.json",
 	"download": "https://raw.githubusercontent.com/snorith/maelstrom/v0.3.3/package/maelstrom-v0.3.3.zip",
 	"license": "LICENSE",
@@ -48,10 +45,9 @@
 	],
 	"authors": [
 		{
-			"name": "Stephen Smith",
-			"twitter": "@norith",
-			"reddit": "u/norith"
+			"name": "Martin Smith",
+			"twitter": "farling",
+			"discird": "farling"
 		}
-	],
-	"manifestPlusVersion": "1.2.0"
+	]
 }

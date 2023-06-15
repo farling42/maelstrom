@@ -176,10 +176,6 @@ export class MaelstromActorSheet extends ActorSheet {
                 td.slideUp(200, () => this.render(false));
             }
         });
-        // Tooltips
-        html.find('.tooltip').tooltipster({
-            interactive: true
-        });
         // Heal all wounds by one
         html.find('.item-heal-wounds').on("click", this._onItemHealByOne.bind(this));
         // suffer bleeding damage
