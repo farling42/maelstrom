@@ -29,6 +29,14 @@ export class MaelstromWeaponItemSheet extends ItemSheet {
         sheetData.data = sheetData.data.system;
         sheetData.attributesList = MAELSTROM.attributes;
         sheetData.enriched_notes = await TextEditor.enrichHTML(sheetData.data.notes);
+        // set orderChoices for this item
+        sheetData.orderChoices = {};
+        const curorder = sheetData.data.order;
+        if (curorder > 0)
+          sheetData.orderChoices[` ${curorder-6}`] = "MAELSTROM.item.weapon.order.up";
+        sheetData.orderChoices[` ${curorder}`] = "MAELSTROM.item.weapon.order.same";
+        if (curorder < sheetData.data.lastOrder)
+          sheetData.orderChoices[` ${curorder+6}`] = "MAELSTROM.item.weapon.order.down";
         return sheetData;
     }
     get type() {
@@ -39,7 +47,7 @@ export class MaelstromWeaponItemSheet extends ItemSheet {
         const position = super.setPosition(options);
         const sheetBody = this.element.find(".sheet-body");
         const bodyHeight = position.height - 192;
-        sheetBody === null || sheetBody === void 0 ? void 0 : sheetBody.css("height", bodyHeight);
+        sheetBody?.css("height", bodyHeight);
         return position;
     }
     /** @override */

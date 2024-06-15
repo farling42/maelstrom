@@ -6,15 +6,7 @@
             {{#if (gte data.order 0)}}
                 <label title="{{localize "MAELSTROM.item.weapon.order.title"}}">{{localize "MAELSTROM.item.weapon.order.label"}}
                     <select name="system.order" title="{{localize "MAELSTROM.item.weapon.order.title"}}" data-dtype="Number">
-                        {{#select data.order}}
-                            {{#if (gt data.order 0)}}
-                                <option value="{{add data.order -6}}">{{localize "MAELSTROM.item.weapon.order.up"}}</option>
-                            {{/if}}
-                            <option value="{{data.order}}">{{localize "MAELSTROM.item.weapon.order.same"}}</option>
-							{{#if (lt data.order data.lastOrder)}}
-                            	<option value="{{add data.order 6}}">{{localize "MAELSTROM.item.weapon.order.down"}}</option>
-							{{/if}}
-                        {{/select}}
+                      {{selectOptions orderChoices selected=(concat ' ' data.order) localize=true}}
                     </select>
                 </label>
             {{/if}}

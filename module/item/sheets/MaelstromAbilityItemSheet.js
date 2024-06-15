@@ -39,7 +39,7 @@ export class MaelstromAbilityItemSheet extends ItemSheet {
         const position = super.setPosition(options);
         const sheetBody = this.element.find(".sheet-body");
         const bodyHeight = position.height - 192;
-        sheetBody === null || sheetBody === void 0 ? void 0 : sheetBody.css("height", bodyHeight);
+        sheetBody?.css("height", bodyHeight);
         return position;
     }
     /** @override */
