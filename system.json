@@ -32,12 +32,12 @@
 	"media": [
 		{
 			"type": "cover",
-			"url": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
+			"url": "https://github.com/farling42/maelstrom/blob/641c663286ef3252db477808aac040a62e178da0/wiki/maelstrom-character-sheet.png",
 			"caption": "Maelstrom RPG"
 		},
 		{
 			"type": "screenshot",
-			"url": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
+			"url": "https://github.com/farling42/maelstrom/blob/641c663286ef3252db477808aac040a62e178da0/wiki/maelstrom-character-sheet.png",
 			"caption": "Player sheet"
 		}
 	],
