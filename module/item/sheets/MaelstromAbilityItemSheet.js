@@ -7,7 +7,7 @@ export class MaelstromAbilityItemSheet extends ItemSheet {
      * @return {Object}
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["boilerplate", "sheet", "item"],
             width: 550,
             height: 620,

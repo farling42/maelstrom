@@ -24,6 +24,6 @@ export class MaelstromItemSheet extends ItemSheet {
         if (object === null)
             throw new Error(`Unhandled object type ${type}`);
         //...then merge that object into the current one
-        mergeObject(this, object);
+        foundry.utils.mergeObject(this, object);
     }
 }

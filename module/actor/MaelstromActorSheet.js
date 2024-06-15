@@ -47,7 +47,7 @@ function removeHtmlTags(str) {
 export class MaelstromActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["boilerplate", "sheet", "actor"],
       width: 925,
       height: 1000,
