@@ -26,7 +26,7 @@
 
 To install and use MAELSTROM for FoundryVTT, paste the following URL into the Install System dialog in the setup menu of the application.
 
-https://github.com/farling42/maelstrom/releases/latest/download/module.json
+https://github.com/farling42/maelstrom/releases/latest/download/system.json
 
 ## Thanks
 
