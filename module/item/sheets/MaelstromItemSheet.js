@@ -2,6 +2,7 @@ import { MaelstromAbilityItemSheet } from "./MaelstromAbilityItemSheet.js";
 import { MaelstromAbilityItem } from "../MaelstromAbilityItem.js";
 import { MaelstromWeaponItem } from "../MaelstromWeaponItem.js";
 import { MaelstromWeaponItemSheet } from "./MaelstromWeaponItemSheet.js";
+
 export class MaelstromItemSheet extends ItemSheet {
     constructor(data, options) {
         super(data, options);

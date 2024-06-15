@@ -8,31 +8,31 @@
             <h1 class="char-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" data-dtype="String"></h1>
             <div class="grid grid-2col">
                 <div class="info-grid-form">
-                    <label class="resource-label" for="data.age">{{localize "MAELSTROM.character.age.label"}}</label>
-                    <input type="text" name="data.age" value="{{data.age}}" data-dtype="Number">
+                    <label class="resource-label" for="system.age">{{localize "MAELSTROM.character.age.label"}}</label>
+                    <input type="text" name="system.age" value="{{data.age}}" data-dtype="Number">
 
-                    <label class="resource-label" for="data.race">{{localize "MAELSTROM.character.race.label"}}</label>
-                    <input type="text" name="data.race" value="{{data.race}}" data-dtype="String">
+                    <label class="resource-label" for="system.race">{{localize "MAELSTROM.character.race.label"}}</label>
+                    <input type="text" name="system.race" value="{{data.race}}" data-dtype="String">
 
-                    <label class="resource-label" for="data.sex">{{localize "MAELSTROM.character.sex.label"}}</label>
-                    <input type="text" name="data.sex" value="{{data.sex}}" data-dtype="String">
+                    <label class="resource-label" for="system.sex">{{localize "MAELSTROM.character.sex.label"}}</label>
+                    <input type="text" name="system.sex" value="{{data.sex}}" data-dtype="String">
 
-                    <label class="resource-label" for="data.social">{{localize "MAELSTROM.character.social.label"}}</label>
-                    <input type="text" name="data.social" value="{{data.social}}" data-dtype="String">
+                    <label class="resource-label" for="system.social">{{localize "MAELSTROM.character.social.label"}}</label>
+                    <input type="text" name="system.social" value="{{data.social}}" data-dtype="String">
                 </div>
 
                 <div class="info-grid-form">
-                    <label class="resource-label" for="data.imbalance">{{localize "MAELSTROM.character.imbalance.label"}}</label>
-                    <input type="text" name="data.imbalance" value="{{data.imbalance}}" data-dtype="String">
+                    <label class="resource-label" for="system.imbalance">{{localize "MAELSTROM.character.imbalance.label"}}</label>
+                    <input type="text" name="system.imbalance" value="{{data.imbalance}}" data-dtype="String">
 
-					<label class="resource-label" for="data.favour">{{#if (eq maelstromFlavour 2)}}{{localize "MAELSTROM.character.renown.label"}}{{else}}{{localize "MAELSTROM.character.favour.label"}}{{/if}}</label>
-                    <input type="text" name="data.favour" value="{{data.favour}}" data-dtype="String">
+					<label class="resource-label" for="system.favour">{{#if (eq maelstromFlavour 2)}}{{localize "MAELSTROM.character.renown.label"}}{{else}}{{localize "MAELSTROM.character.favour.label"}}{{/if}}</label>
+                    <input type="text" name="system.favour" value="{{data.favour}}" data-dtype="String">
 
-                    <label class="resource-label" for="data.patron">{{localize "MAELSTROM.character.patron.label"}}</label>
-                    <input type="text" name="data.patron" value="{{data.patron}}" data-dtype="String">
+                    <label class="resource-label" for="system.patron">{{localize "MAELSTROM.character.patron.label"}}</label>
+                    <input type="text" name="system.patron" value="{{data.patron}}" data-dtype="String">
 
-                    <label class="resource-label" for="data.money.amount">{{localize "MAELSTROM.character.money.label"}}</label>
-                    <input type="text" name="data.money.amount" value="{{data.money.amount}}" data-dtype="String">
+                    <label class="resource-label" for="system.money.amount">{{localize "MAELSTROM.character.money.label"}}</label>
+                    <input type="text" name="system.money.amount" value="{{data.money.amount}}" data-dtype="String">
                 </div>
             </div>
         </div>
@@ -67,11 +67,11 @@
                         <tbody>
                         {{#each data.attributes as |attribute key|}}
                             <tr>
-                                <td class="left-align-text"><label for="data.attributes.{{key}}.temp" class="resource-label" title="{{localize (concat "MAELSTROM.attribute.detail." key)}}">{{localize (concat "MAELSTROM.attribute.name." key)}}</label></td>
-                                <td><input type="text" name="data.attributes.{{key}}.orig" value="{{attribute.orig}}" data-dtype="Number"/></td>
+                                <td class="left-align-text"><label for="system.attributes.{{key}}.temp" class="resource-label" title="{{localize (concat "MAELSTROM.attribute.detail." key)}}">{{localize (concat "MAELSTROM.attribute.name." key)}}</label></td>
+                                <td><input type="text" name="system.attributes.{{key}}.orig" value="{{attribute.orig}}" data-dtype="Number"/></td>
                                 <td><a class="item-control attribute-roll" data-attribute="{{key}}" title="{{localize (concat "MAELSTROM.attribute.roll." key)}}"><i class="fas fa-dice"></i></a></td>
-                                <td><input type="text" name="data.attributes.{{key}}.temp" value="{{attribute.temp}}" data-dtype="Number"/></td>
-                                <td><input type="checkbox" name="data.attributes.{{key}}.used" {{checked attribute.used}} data-dtype="Boolean"/></td>
+                                <td><input type="text" name="system.attributes.{{key}}.temp" value="{{attribute.temp}}" data-dtype="Number"/></td>
+                                <td><input type="checkbox" name="system.attributes.{{key}}.used" {{checked attribute.used}} data-dtype="Boolean"/></td>
                             </tr>
                         {{/each}}
                         </tbody>
@@ -96,12 +96,12 @@
                                                 {{else}}
                                                     <a class="item-control item-add-bleeding-damage" title="{{localize "MAELSTROM.wounds.wounds.bleeding.damage.one.round"}}"><i class="fas fa-plus fa-border"></i></a>
                                                 {{/if}}
-                                                <input type="text" class="wound bleeding-damage" name="data.wounds.wounds.[{{@index}}]" value="{{isZeroThenBlank wound}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.bloodloss.damage"}}"/></label>
+                                                <input type="text" class="wound bleeding-damage" name="system.wounds.wounds.[{{@index}}]" value="{{isZeroThenBlank wound}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.bloodloss.damage"}}"/></label>
                                             {{else}}
-                                                <input type="text" class="wound" name="data.wounds.wounds.[{{@index}}]" value="{{isZeroThenBlank wound}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.index" index=@index}}"/>
+                                                <input type="text" class="wound" name="system.wounds.wounds.[{{@index}}]" value="{{isZeroThenBlank wound}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.index" index=@index}}"/>
                                             {{/if}}
                                         {{/each}}
-                                        <input type="text" name="data.wounds.bloodloss" class="bloodloss wound" value="{{isZeroThenBlank data.wounds.bloodloss}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.bleeding.title"}}"/>
+                                        <input type="text" name="system.wounds.bloodloss" class="bloodloss wound" value="{{isZeroThenBlank data.wounds.bloodloss}}" data-dtype="Number" title="{{localize "MAELSTROM.wounds.wounds.bleeding.title"}}"/>
                                     </div>
                                     <div class="flex-group-center">
                                         <strong title="{{localize "MAELSTROM.wounds.total.title"}}">{{localize "MAELSTROM.wounds.total.header"}}</strong>
@@ -124,12 +124,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="left-align-text"><label for="data.wounds.injuries" class="resource-label" title="{{localize "MAELSTROM.wounds.injuries.title"}}">{{localize "MAELSTROM.wounds.injuries.label"}}</label></td>
-                            <td><textarea name="data.wounds.injuries" rows="2">{{data.wounds.injuries}}</textarea> </td>
+                            <td class="left-align-text"><label for="system.wounds.injuries" class="resource-label" title="{{localize "MAELSTROM.wounds.injuries.title"}}">{{localize "MAELSTROM.wounds.injuries.label"}}</label></td>
+                            <td><textarea name="system.wounds.injuries" rows="2">{{data.wounds.injuries}}</textarea> </td>
                         </tr>
                         <tr>
-                            <td class="left-align-text"><label for="data.wounds.longterm" class="resource-label" title="{{localize "MAELSTROM.wounds.longterm.title"}}">{{localize "MAELSTROM.wounds.longterm.label"}}</label></td>
-                            <td><textarea name="data.wounds.longterm" rows="2">{{data.wounds.longterm}}</textarea> </td>
+                            <td class="left-align-text"><label for="system.wounds.longterm" class="resource-label" title="{{localize "MAELSTROM.wounds.longterm.title"}}">{{localize "MAELSTROM.wounds.longterm.label"}}</label></td>
+                            <td><textarea name="system.wounds.longterm" rows="2">{{data.wounds.longterm}}</textarea> </td>
                         </tr>
                         </tbody>
                     </table>
@@ -144,24 +144,24 @@
                         <tbody>
                         <tr>
                             <td colspan="1" class="left-align-text">
-                                <label for="data.armour.armour" class="resource-label" title="{{localize "MAELSTROM.armour.armour.title"}}">{{localize "MAELSTROM.armour.armour.label"}}</label>
+                                <label for="system.armour.armour" class="resource-label" title="{{localize "MAELSTROM.armour.armour.title"}}">{{localize "MAELSTROM.armour.armour.label"}}</label>
                             </td>
                             <td colspan="3">
-                                <input type="text" name="data.armour.armour" value="{{data.armour.armour}}" data-dtype="String" title="{{localize "MAELSTROM.armour.armour.title"}}">
+                                <input type="text" name="system.armour.armour" value="{{data.armour.armour}}" data-dtype="String" title="{{localize "MAELSTROM.armour.armour.title"}}">
                             </td>
                         </tr>
                         <tr>
                             <td class="left-align-text">
-                                <label for="data.armour.ar" class="resource-label" title="{{localize "MAELSTROM.armour.ar.title"}}">{{localize "MAELSTROM.armour.ar.label"}}</label>
+                                <label for="system.armour.ar" class="resource-label" title="{{localize "MAELSTROM.armour.ar.title"}}">{{localize "MAELSTROM.armour.ar.label"}}</label>
                             </td>
                             <td>
-                                <input type="text" name="data.armour.ar" value="{{isZeroThenBlank data.armour.ar}}" data-dtype="Number" title="{{localize "MAELSTROM.armour.ar.title"}}">
+                                <input type="text" name="system.armour.ar" value="{{isZeroThenBlank data.armour.ar}}" data-dtype="Number" title="{{localize "MAELSTROM.armour.ar.title"}}">
                             </td>
                             <td class="left-align-text">
-                                <label for="data.armour.penalty" class="resource-label" title="{{localize "MAELSTROM.armour.penalty.title"}}">{{localize "MAELSTROM.armour.penalty.label"}}</label>
+                                <label for="system.armour.penalty" class="resource-label" title="{{localize "MAELSTROM.armour.penalty.title"}}">{{localize "MAELSTROM.armour.penalty.label"}}</label>
                             </td>
                             <td>
-                                <input type="text" name="data.armour.penalty" value="{{isZeroThenBlank data.armour.penalty}}" data-dtype="Number" title="{{localize "MAELSTROM.armour.penalty.title"}}">
+                                <input type="text" name="system.armour.penalty" value="{{isZeroThenBlank data.armour.penalty}}" data-dtype="Number" title="{{localize "MAELSTROM.armour.penalty.title"}}">
                             </td>
                         </tr>
                         </tbody>
@@ -180,13 +180,13 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="text" name="data.characteristics.characteristic1" value="{{data.characteristics.characteristic1}}" data-dtype="String"/></td>
+                            <td><input type="text" name="system.characteristics.characteristic1" value="{{data.characteristics.characteristic1}}" data-dtype="String"/></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="data.characteristics.characteristic2" value="{{data.characteristics.characteristic2}}" data-dtype="String"/></td>
+                            <td><input type="text" name="system.characteristics.characteristic2" value="{{data.characteristics.characteristic2}}" data-dtype="String"/></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="data.characteristics.characteristic3" value="{{data.characteristics.characteristic3}}" data-dtype="String"/></td>
+                            <td><input type="text" name="system.characteristics.characteristic3" value="{{data.characteristics.characteristic3}}" data-dtype="String"/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -313,9 +313,9 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><label for="data.initiative.modifier" class="resource-label">{{localize "MAELSTROM.initiative.label"}}</label></td>
+                            <td><label for="system.initiative.modifier" class="resource-label">{{localize "MAELSTROM.initiative.label"}}</label></td>
                             <td><a class="item-control roll-initiative" title="{{localize "MAELSTROM.initiative.roll.title"}}"><i class="fas fa-dice-d20"></i></a></td>
-                            <td><input type="text" name="data.initiative.modifier" value="{{data.initiative.modifier}}" title="{{localize "MAELSTROM.initiative.modifier.title"}}" data-dtype="Number"></td>
+                            <td><input type="text" name="system.initiative.modifier" value="{{data.initiative.modifier}}" title="{{localize "MAELSTROM.initiative.modifier.title"}}" data-dtype="Number"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -380,15 +380,15 @@
 
         {{!-- equipment / events / supernatural / languages tab --}}
         <div class="tab equipment" data-group="primary" data-tab="equipment">
-            <label for="data.events.supernatural" class="resource-label">{{localize "MAELSTROM.events.supernatural.header"}}</label>
-            <input type="text" name="data.events.supernatural" value="{{data.events.supernatural}}" data-dtype="String">
+            <label for="system.events.supernatural" class="resource-label">{{localize "MAELSTROM.events.supernatural.header"}}</label>
+            <input type="text" name="system.events.supernatural" value="{{data.events.supernatural}}" data-dtype="String">
             <div class="resources grid grid-2col">
                 <div class="resource flex-group-center">
-                    <label for="data.notes" class="resource-label">{{localize "MAELSTROM.notes.header"}}</label>
-                    <textarea name="data.notes" rows="10" >{{data.notes}}</textarea>
+                    <label for="system.notes" class="resource-label">{{localize "MAELSTROM.notes.header"}}</label>
+                    <textarea name="system.notes" rows="10" >{{data.notes}}</textarea>
                     <hr>
-                    <label for="data.equipment" class="resource-label">{{localize "MAELSTROM.equipment.header"}}</label>
-                    <textarea name="data.equipment" rows="25" >{{data.equipment}}</textarea>
+                    <label for="system.equipment" class="resource-label">{{localize "MAELSTROM.equipment.header"}}</label>
+                    <textarea name="system.equipment" rows="25" >{{data.equipment}}</textarea>
                 </div>
                 <div class="resource flex-group-center">
                     <table class="events">
@@ -409,34 +409,34 @@
                         </thead>
                         <tbody>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c1.living" value="{{data.events.careers.c1.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c1.years" value="{{data.events.careers.c1.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c1.event" value="{{data.events.careers.c1.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c1.living" value="{{data.events.careers.c1.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c1.years" value="{{data.events.careers.c1.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c1.event" value="{{data.events.careers.c1.event}}" data-dtype="String"></td>
                         </tr>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c2.living" value="{{data.events.careers.c2.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c2.years" value="{{data.events.careers.c2.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c2.event" value="{{data.events.careers.c2.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c2.living" value="{{data.events.careers.c2.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c2.years" value="{{data.events.careers.c2.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c2.event" value="{{data.events.careers.c2.event}}" data-dtype="String"></td>
                         </tr>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c3.living" value="{{data.events.careers.c3.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c3.years" value="{{data.events.careers.c3.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c3.event" value="{{data.events.careers.c3.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c3.living" value="{{data.events.careers.c3.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c3.years" value="{{data.events.careers.c3.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c3.event" value="{{data.events.careers.c3.event}}" data-dtype="String"></td>
                         </tr>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c4.living" value="{{data.events.careers.c4.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c4.years" value="{{data.events.careers.c4.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c4.event" value="{{data.events.careers.c4.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c4.living" value="{{data.events.careers.c4.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c4.years" value="{{data.events.careers.c4.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c4.event" value="{{data.events.careers.c4.event}}" data-dtype="String"></td>
                         </tr>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c5.living" value="{{data.events.careers.c5.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c5.years" value="{{data.events.careers.c5.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c5.event" value="{{data.events.careers.c5.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c5.living" value="{{data.events.careers.c5.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c5.years" value="{{data.events.careers.c5.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c5.event" value="{{data.events.careers.c5.event}}" data-dtype="String"></td>
                         </tr>
                         <tr class="left-align-text">
-                            <td><input type="text" name="data.events.careers.c6.living" value="{{data.events.careers.c6.living}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c6.years" value="{{data.events.careers.c6.years}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.events.careers.c6.event" value="{{data.events.careers.c6.event}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c6.living" value="{{data.events.careers.c6.living}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c6.years" value="{{data.events.careers.c6.years}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.events.careers.c6.event" value="{{data.events.careers.c6.event}}" data-dtype="String"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -449,12 +449,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="text" name="data.languages.lang1" value="{{data.languages.lang1}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.languages.lang2" value="{{data.languages.lang2}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.languages.lang1" value="{{data.languages.lang1}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.languages.lang2" value="{{data.languages.lang2}}" data-dtype="String"></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="data.languages.lang3" value="{{data.languages.lang3}}" data-dtype="String"></td>
-                            <td><input type="text" name="data.languages.lang4" value="{{data.languages.lang4}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.languages.lang3" value="{{data.languages.lang3}}" data-dtype="String"></td>
+                            <td><input type="text" name="system.languages.lang4" value="{{data.languages.lang4}}" data-dtype="String"></td>
                         </tr>
                         </tbody>
                     </table>

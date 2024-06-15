@@ -58,7 +58,7 @@ export const Migrator = {
         }
         const updatedObject = await this.migrationFunction(obj, data);
         if (updatedObject)
-            updatedObject["data.version"] = this.forVersion;
+            updatedObject["system.version"] = this.forVersion;
         return updatedObject;
     }
 };

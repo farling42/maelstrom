@@ -74,10 +74,7 @@ export class MaelstromActorSheet extends ActorSheet {
   /* -------------------------------------------- */
   /** @override */
   async getData() {
-    //getData behaves MUCH differently in 0.8!
-    //see https://gitlab.com/foundrynet/foundryvtt/-/issues/4321
     const sheetData = super.getData();
-    //see https://discord.com/channels/170995199584108546/670336275496042502/836066464388743188
     sheetData.data = sheetData.data.system;
     sheetData.dtypes = ["String", "Number", "Boolean"];
     for (let attr of Object.values(sheetData.data.attributes)) {
