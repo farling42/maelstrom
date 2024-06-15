@@ -20,7 +20,7 @@
 	"minimumCoreVersion": "10",
 	"compatibility": {
 		"minimum": "10",
-		"verified": "10.291"
+		"verified": "11.315"
 	  },
 	"manifest": "https://raw.githubusercontent.com/snorith/maelstrom/master/src/system.json",
 	"download": "https://raw.githubusercontent.com/snorith/maelstrom/v0.3.3/package/maelstrom-v0.3.3.zip",
@@ -33,12 +33,12 @@
 	"media": [
 		{
 			"type": "cover",
-			"link": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
+			"url": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
 			"caption": "Maelstrom RPG"
 		},
 		{
 			"type": "screenshot",
-			"link": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
+			"url": "https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png",
 			"caption": "Player sheet"
 		}
 	],

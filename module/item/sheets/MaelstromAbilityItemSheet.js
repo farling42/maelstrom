@@ -28,7 +28,7 @@ export class MaelstromAbilityItemSheet extends ItemSheet {
         const sheetData = super.getData(options);
         sheetData.data = sheetData.data.system;
         sheetData.attributesList = MAELSTROM.attributes;
-        sheetData.enriched_notes = await TextEditor.enrichHTML(sheetData.data.notes, {async:true});
+        sheetData.enriched_notes = await TextEditor.enrichHTML(sheetData.data.notes);
         return sheetData;
     }
     get type() {

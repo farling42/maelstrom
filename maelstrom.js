@@ -22,7 +22,9 @@ import { MAELSTROM } from "./module/config.js";
 import { MaelstromAbilityItem } from "./module/item/MaelstromAbilityItem.js";
 import { MaelstromWeaponItem } from "./module/item/MaelstromWeaponItem.js";
 import { MaelstromWeaponItemSheet } from "./module/item/sheets/MaelstromWeaponItemSheet.js";
+
 export const INITIATIVE_FORMULA = "2d10 + @attributes.speed.current + @initiative.modifier + (@attributes.speed.current / 100)";
+
 /* ------------------------------------ */
 /* Initialize system					*/
 /* ------------------------------------ */

@@ -174,3 +174,4 @@ $RECYCLE.BIN/
 node_modules
 foundryconfig.json
 dist
+maelstrom.lock
