@@ -14,7 +14,6 @@
 			"path": "lang/en.json"
 		}
 	],
-	"socket": false,
 	"gridDistance": 10,
 	"gridUnits": "ft",
 	"minimumCoreVersion": "10",
@@ -22,14 +21,14 @@
 		"minimum": "10",
 		"verified": "11.315"
 	  },
-	"manifest": "https://raw.githubusercontent.com/snorith/maelstrom/master/src/system.json",
-	"download": "https://raw.githubusercontent.com/snorith/maelstrom/v0.3.3/package/maelstrom-v0.3.3.zip",
+	"manifest": "#MANIFEST#",
+	"download": "#DOWNLOAD#",
 	"license": "LICENSE",
-	"readme": "https://github.com/snorith/maelstrom#readme",
-	"bugs": "https://github.com/snorith/maelstrom/issues",
-	"changelog": "https://github.com/snorith/maelstrom#changelog",
+	"readme": "https://github.com/farling42/maelstrom#readme",
+	"bugs": "https://github.com/farling42/maelstrom/issues",
+	"changelog": "https://github.com/farling42/maelstrom#changelog",
 	"primaryTokenAttribute": "hp",
-	"url": "https://github.com/snorith/maelstrom.git",
+	"url": "https://github.com/farling42/maelstrom",
 	"media": [
 		{
 			"type": "cover",
@@ -44,9 +43,13 @@
 	],
 	"authors": [
 		{
-			"name": "Martin Smith",
-			"twitter": "farling",
-			"discird": "farling"
+      "name": "Farling",
+      "url": "https://github.com/farling42",
+      "email": "foundryvtt@amusingtime.uk",
+      "discord": "farling",
+      "ko-fi": "farling",
+      "patreon": "amusingtime",
+      "twitter": "@shambles42"
 		}
 	]
 }

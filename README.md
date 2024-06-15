@@ -34,23 +34,6 @@ https://raw.githubusercontent.com/farling42/maelstrom/master/src/system.json
 * partially based on the [Boilerplate System](https://gitlab.com/asacolips-projects/foundry-mods/boilerplate) by Asacolips.
 * suggestions from [Numenera-FoundryVTT](https://github.com/SolarBear/Numenera-FoundryVTT) by SolarBear
 
-## Changelog
-
-#### 0.4.0 - 2023-06-15
-- Get working on Foundry V10 (based on pure JS rather than TS)
-
-#### v0.3.0 - 2021-07-26
-##### Modified
-* Foundry VTT v0.8.x compatibility
-
-#### v0.2.0 - 2021-01-16
-##### Modified
-* working reordering of weapons
-
-#### v0.1.1 - 2021-01-13
-##### Added
-* Initial release
-
 ---
 
 The Maelstrom RPG is © Alexander Scott all rights reserved.
