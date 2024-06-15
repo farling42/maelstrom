@@ -16,10 +16,13 @@
 	],
 	"gridDistance": 10,
 	"gridUnits": "ft",
-	"minimumCoreVersion": "10",
+  "grid": {
+    "distance": 10,
+    "units": "ft"
+  },
 	"compatibility": {
 		"minimum": "10",
-		"verified": "11.315"
+		"verified": "12.327"
 	  },
 	"manifest": "#MANIFEST#",
 	"download": "#DOWNLOAD#",
