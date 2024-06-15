@@ -65,11 +65,7 @@
                 <div class="resource">
                     <label title="{{localize "MAELSTROM.item.weapon.attributes.attack.title"}}">{{localize "MAELSTROM.item.weapon.attributes.attack.label"}}
                         <select name="system.attributes.attack" class="attack" title="{{localize "MAELSTROM.item.weapon.attributes.attack.title"}}" data-dtype="String">
-                            {{#select data.attributes.attack}}
-                            {{#each attributesList as |key|}}
-                                <option value="{{key}}">{{localize (concat "MAELSTROM.attribute.name." key)}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{selectOptions attributesList selected=data.attributes.attack localize=true}}
                         </select>
                     </label>
                 </div>
@@ -77,11 +73,7 @@
                 <div class="resource">
                     <label title="{{localize "MAELSTROM.item.weapon.attributes.defence.title"}}">{{localize "MAELSTROM.item.weapon.attributes.defence.label"}}
                         <select name="system.attributes.defence" class="defence" title="{{localize "MAELSTROM.item.weapon.attributes.defence.title"}}" data-dtype="String">
-                            {{#select data.attributes.defence}}
-                            {{#each attributesList as |key|}}
-                                <option value="{{key}}">{{localize (concat "MAELSTROM.attribute.name." key)}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{selectOptions attributesList selected=data.attributes.defence localize=true}}
                         </select>
                     </label>
                 </div>

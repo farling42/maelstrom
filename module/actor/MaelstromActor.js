@@ -95,7 +95,7 @@ export class MaelstromActor extends Actor {
 
   async rollAttribute(attributeName, modifiers = [], itemName = '') {
     const attributeValue = this._getAttributeValue(attributeName);
-    if (MAELSTROM.physicalAttributes.includes(attributeName)) {
+    if (MAELSTROM.physicalAttributes[attributeName]) {
       // add any armour penalty modifier
       const penalty = this._getArmourPenaltyValue();
       if (penalty != 0) {
