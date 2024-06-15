@@ -16,7 +16,7 @@
 * Combat scene initiative support with a modifier and separate initiative rolling with a modifier
 * The weapon/shield support can also be used for canned rolls needed for characteristics and abilities
 
-![Character sheet](https://user-images.githubusercontent.com/1318926/104818700-25f0aa80-57f7-11eb-91a1-80f706857850.png)
+![Character sheet](https://github.com/farling42/maelstrom/blob/641c663286ef3252db477808aac040a62e178da0/wiki/maelstrom-character-sheet.png)
 
 ## Todo
 
@@ -26,7 +26,7 @@
 
 To install and use MAELSTROM for FoundryVTT, paste the following URL into the Install System dialog in the setup menu of the application.
 
-https://raw.githubusercontent.com/farling42/maelstrom/master/src/system.json
+https://github.com/farling42/maelstrom/releases/latest/download/module.json
 
 ## Thanks
 
