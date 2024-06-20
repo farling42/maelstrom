@@ -29,7 +29,7 @@ export class MaelstromWeaponItemSheet extends ItemSheet {
         sheetData.data = sheetData.data.system;
         sheetData.attributesList = MAELSTROM.attributes;
         sheetData.enriched_notes = await TextEditor.enrichHTML(sheetData.data.notes);
-        // set orderChoices for this item
+        // set orderChoices for this item (need space to maintain correct order of fields)
         sheetData.orderChoices = {};
         const curorder = sheetData.data.order;
         if (curorder > 0)

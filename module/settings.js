@@ -58,7 +58,7 @@ export const registerSettings = function () {
         if (!value) {
             return options.fn(this);
         }
-        return value.replace(/\s*/g, '').length === 0
+        return value.trim().length === 0
             ? options.fn(this)
             : options.inverse(this);
     });
@@ -91,5 +91,5 @@ export const registerSettings = function () {
     });
 };
 export function isEmptyOrSpaces(str) {
-    return str === null || str.match(/^[\s\n\r\t]*$/) !== null;
+    return str === null || str.trim().length === 0;
 }
