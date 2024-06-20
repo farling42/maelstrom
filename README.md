@@ -1,3 +1,5 @@
+NOTE: The Kickstarter had 140-150 people funding it. The V9 version of the game system had 0-1 downloads.
+
 # MAELSTROM by [Arion Games](http://arion-games.com/)
 ## System support for [FoundryVTT](https://foundryvtt.com/)
 
